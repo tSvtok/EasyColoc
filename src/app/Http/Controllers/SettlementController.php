@@ -25,9 +25,7 @@ class SettlementController extends Controller
             ->with('success', 'Paiement enregistré.');
     }
 
-    /**
-     * Recalculate and store settlements for a colocation.
-     */
+    //Recalculate and store settlements for a colocation.
     public function recalculate(Request $request, Colocation $colocation): RedirectResponse
     {
         if ((int) $colocation->owner_id !== (int) $request->user()->id) {
