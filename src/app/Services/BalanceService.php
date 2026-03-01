@@ -6,13 +6,10 @@ use App\Models\Colocation;
 
 class BalanceService
 {
-    /**
-     * Calculate the balance for each active member.
-     * Balance = total paid by member - fair share of all expenses.
-     * Positive = others owe them. Negative = they owe others.
-     *
-     * @return array<int, float> [user_id => balance]
-     */
+    //Calculate the balance for each active member.
+    //Balance = total paid by member - fair share of all expenses.
+    //Positive = others owe them. Negative = they owe others.
+    
     public function calculateBalances(Colocation $colocation): array
     {
         $members = $colocation->activeMembers()->get();
@@ -57,10 +54,6 @@ class BalanceService
         return $balances;
     }
 
-    /**
-     * Calculate simplified settlements (who owes whom).
-     * Returns array of ['from' => User, 'to' => User, 'amount' => float]
-     */
     public function calculateSettlements(Colocation $colocation): array
     {
         $balances = $this->calculateBalances($colocation);
